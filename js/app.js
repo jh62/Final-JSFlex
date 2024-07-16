@@ -1,3 +1,5 @@
+let total = 0;
+
 document.addEventListener("DOMContentLoaded", () => {
   crearContenedorToast();
   fetchProductos();
@@ -50,7 +52,7 @@ function insertarItem(event) {
     cart.push(productId);
     localStorage.setItem("cart", JSON.stringify(cart));
     actualizarCarrito();
-    mostrarToast("Producto agregado al carrito", "Gracias!", "success");
+    mostrarToast("Producto agregado al carrito", "Articulo agregado", "success");
   } else {
     mostrarToast("No es posible entregar más de 20 productos por domicilio", "Aviso!", "warning");
   }
@@ -58,7 +60,10 @@ function insertarItem(event) {
 
 function actualizarCarrito() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  document.getElementById("cart-count").innerText = cart.length;
+
+  let cart_count = document.getElementById("cart-count");
+  cart_count.innerText = cart.length;
+  agregarEfectoBounce(cart_count);
 }
 
 function verCarrito() {
@@ -73,12 +78,18 @@ function finalizarCompra() {
   const address = document.getElementById("address").value;
   if (address.trim() === "") {
     mostrarToast("Por favor ingrese una dirección", "Aviso importante!", "danger");
-  } else {
-    localStorage.removeItem("cart");
-    actualizarCarrito();
-    $("#cartModal").modal("hide");
-    mostrarToast("Gracias por su compra", "Orden finalizada", "success");
+    return;
   }
+
+  if (total <= 0) {
+    mostrarToast("No tenés ningún articulo en tu carrito!", "Carrito vacío!", "danger");
+    return;
+  }
+
+  localStorage.removeItem("cart");
+  actualizarCarrito();
+  $("#cartModal").modal("hide");
+  mostrarToast("Gracias por su compra", "Orden finalizada", "success");
 }
 
 function crearContenedorToast() {
@@ -106,6 +117,7 @@ function mostrarToast(message, titulo = "Información", tipo = "normal") {
   toastContainer.appendChild(toast);
   $(toast).toast({ delay: 3000 });
   $(toast).toast("show");
+  agregarEfectoSlideDown(toast);
   toast.addEventListener("hidden.bs.toast", () => {
     toast.remove();
   });
@@ -121,7 +133,7 @@ function mostrarCarrito() {
   const cartItems = document.getElementById("cart-items");
   cartItems.innerHTML = "";
 
-  let total = 0;
+  total = 0;
 
   cart.forEach((productId) => {
     const product = products.find((p) => p.id == productId);
@@ -147,16 +159,23 @@ function mostrarCarrito() {
 }
 
 function eliminarItem(event) {
-  const productId = event.target.getAttribute("data-id");
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart = cart.filter((id) => id !== productId);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  mostrarCarrito();
-  actualizarCarrito();
-  mostrarToast("Producto eliminado del carrito", "Producto eliminado");
+  let element = event.target.parentElement;
+  agregarEfectoFadeUp(element);
+
+  setTimeout(() => {
+    const productId = event.target.getAttribute("data-id");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart = cart.filter((id) => id !== productId);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    mostrarCarrito();
+    actualizarCarrito();
+    mostrarToast("Producto eliminado del carrito", "Producto eliminado");
+  }, 1000);
 }
 
 function vaciarCarrito() {
+  if (!localStorage.getItem("cart")) return;
+
   localStorage.removeItem("cart");
   mostrarCarrito();
   actualizarCarrito();

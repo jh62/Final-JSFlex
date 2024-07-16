@@ -1,6 +1,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 body {
+  padding-top: 2em;
   animation: fadeIn 1s ease-in;
 }
 
@@ -23,12 +24,16 @@ div#product-list {
   row-gap: 1em;
 }
 
+.wobble {
+  animation: wobble 1s ease;
+}
+
 // Bootstrap estilos propios
 // Estilos para los diferentes tipos de toast
 .toast-container {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 9%;
+  right: 1%;
   z-index: 1050;
 }
 
@@ -112,14 +117,19 @@ div#product-list {
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-
-  p {
+  margin: 0.25em auto;
+  kj p {
     margin: auto;
     flex-grow: 1;
   }
 
   &:hover {
     background-color: #007bff17;
+  }
+
+  &-removed {
+    position: absolute;
+    color: red;
   }
 }
 
