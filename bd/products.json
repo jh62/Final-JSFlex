@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "name": "Modelo X",
+        "description": "Aspiradora de alta eficiencia con mapeo inteligente.",
+        "price": 199.99,
+        "image": "assets/products/vaccuum01.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Modelo Y",
+        "description": "Aspiradora con sistema de autolimpieza y control remoto.",
+        "price": 249.99,
+        "image": "assets/products/vaccuum02.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Modelo Z",
+        "description": "Aspiradora con capacidad de succión avanzada y app para celular.",
+        "price": 299.99,
+        "image": "assets/products/vaccuum03.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Modelo A",
+        "description": "Aspiradora con programación avanzada y sensor de obstáculos.",
+        "price": 189.99,
+        "image": "assets/products/vaccuum04.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Modelo B",
+        "description": "Aspiradora silenciosa con larga duración de batería.",
+        "price": 229.99,
+        "image": "assets/products/vaccuum05.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Modelo C",
+        "description": "Aspiradora con filtro HEPA y control por voz.",
+        "price": 279.99,
+        "image": "assets/products/vaccuum06.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Modelo D",
+        "description": "Aspiradora compacta con función de auto recarga.",
+        "price": 159.99,
+        "image": "assets/products/vaccuum07.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Modelo E",
+        "description": "Aspiradora inteligente con función de contar chistes mientras limpia.",
+        "price": 209.99,
+        "image": "assets/products/vaccuum08.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Modelo F",
+        "description": "Aspiradora automática con plumero en la parte superior para quitar polvo y telarañas de muebles.",
+        "price": 269.99,
+        "image": "assets/products/vaccuum09.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Modelo G",
+        "description": "Aspiradora con microondas incluido, para calentar tu comida mientras limpia.",
+        "price": 189.99,
+        "image": "assets/products/vaccuum10.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Modelo H",
+        "description": "Aspiradora industrial inteligente, con sensor de voz y precio del dólar en tiempo real.",
+        "price": 259.99,
+        "image": "assets/products/vaccuum11.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Modelo I",
+        "description": "Aspiradora tostadora. Nunca más migas de pan luego de retirar una tostada.",
+        "price": 219.99,
+        "image": "assets/products/vaccuum12.jpg"
+    }
+]

@@ -1,0 +1,49 @@
+body {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.toast-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1050;
+}
+
+.toast {
+  background-color: #343a40;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.toast-header {
+  background-color: #343a40;
+  color: #fff;
+  border-bottom: 1px solid #474f57;
+}
+
+.toast-body {
+  background-color: #343a40;
+  color: #fff;
+}
+
+#cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 0.75rem;
+}
