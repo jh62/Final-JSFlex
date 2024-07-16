@@ -137,7 +137,6 @@ function mostrarCarrito() {
     cartItem.querySelector(".remove-item").addEventListener("click", eliminarItem);
   });
 
-  // Botón para limpiar el carrito
   const clearButton = document.createElement("button");
   clearButton.className = "btn btn-danger mt-3 cart-drop";
   clearButton.textContent = "Vaciar Carrito";
