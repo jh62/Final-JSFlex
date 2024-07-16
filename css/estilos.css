@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 body {
   animation: fadeIn 1s ease-in;
 }
@@ -9,6 +10,12 @@ nav.navbar {
   width: 100%;
   z-index: 999;
   box-shadow: rgba(0, 0, 0, 0.3019607843) 0px -1px 6px 2px;
+}
+
+.web-icon {
+  margin-right: 1em;
+  max-width: 32px;
+  width: fit-content;
 }
 
 div#product-list {
@@ -23,20 +30,92 @@ div#product-list {
 }
 
 .toast {
-  background-color: #343a40;
-  color: #fff;
-  opacity: 0.9;
+  position: relative;
+  min-width: 250px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
 }
 
 .toast-header {
-  background-color: #343a40;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
   color: #fff;
-  border-bottom: 1px solid #474f57;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: dimgrey;
 }
 
 .toast-body {
+  padding: 0.75rem;
+  color: white;
+}
+
+.toast.bg-normal {
   background-color: #343a40;
+}
+.toast.bg-normal .toast-body {
+  color: white;
+}
+
+.toast.bg-warning {
+  background-color: #ffc107;
+}
+.toast.bg-warning .toast-body {
+  color: black;
+}
+
+.toast.bg-danger {
+  background-color: #dc3545;
+}
+.toast.bg-danger .toast-body {
+  color: white;
+}
+
+.toast.bg-success {
+  background-color: #28a745;
+}
+.toast.bg-success .toast-body {
+  color: white;
+}
+
+.close {
+  float: right;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
   color: #fff;
+  opacity: 0.8;
+}
+
+.close:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.close:focus,
+.close.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.cart-item {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-item p {
+  margin: auto;
+  flex-grow: 1;
+}
+.cart-item:hover {
+  background-color: rgba(0, 123, 255, 0.0901960784);
+}
+
+.cart-drop {
+  margin: 1em auto;
 }
 
 #cart-icon {
@@ -83,6 +162,10 @@ div#product-list {
 .card .btn {
   align-self: center;
   margin-top: 10px;
+}
+
+button.close > span {
+  color: black;
 }
 
 @keyframes fadeIn {

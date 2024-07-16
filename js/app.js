@@ -13,7 +13,7 @@ async function fetchProductos() {
     localStorage.setItem("products", JSON.stringify(products));
     mostrarProductos(products);
   } catch (error) {
-    console.error("Error al cargar los productos:", error);
+    mostrarToast("Error al cargar los productos", "Ha ocurrido un error inesperado!", "danger");
   }
 }
 
@@ -50,9 +50,9 @@ function insertarItem(event) {
     cart.push(productId);
     localStorage.setItem("cart", JSON.stringify(cart));
     actualizarCarrito();
-    mostrarToast("Producto agregado al carrito");
+    mostrarToast("Producto agregado al carrito", "Gracias!", "success");
   } else {
-    mostrarToast("No es posible entregar más de 20 productos por domicilio");
+    mostrarToast("No es posible entregar más de 20 productos por domicilio", "Aviso!", "warning");
   }
 }
 
@@ -64,7 +64,7 @@ function actualizarCarrito() {
 function verCarrito() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   if (cart.length > 0) {
-    mostrarToast("Aún tiene una compra pendiente");
+    mostrarToast("Aún tenés una compra pendiente. Hacé click en el carrito para finalizar tu pedido.", "Tu aspiradora te espera!");
   }
   actualizarCarrito();
 }
@@ -72,12 +72,12 @@ function verCarrito() {
 function finalizarCompra() {
   const address = document.getElementById("address").value;
   if (address.trim() === "") {
-    mostrarToast("Por favor ingrese una dirección");
+    mostrarToast("Por favor ingrese una dirección", "Aviso importante!", "danger");
   } else {
     localStorage.removeItem("cart");
     actualizarCarrito();
     $("#cartModal").modal("hide");
-    mostrarToast("Gracias por su compra");
+    mostrarToast("Gracias por su compra", "Orden finalizada", "success");
   }
 }
 
@@ -87,27 +87,32 @@ function crearContenedorToast() {
   document.body.appendChild(toastContainer);
 }
 
-function mostrarToast(message) {
+function mostrarToast(message, titulo = "Información", tipo = "normal") {
   const toastContainer = document.querySelector(".toast-container");
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = `toast bg-${tipo}`;
   toast.innerHTML = `
-          <div class="toast-header">
-              <strong class="mr-auto">Aviso</strong>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="toast-body">
-              ${message}
-          </div>
-      `;
+      <div class="toast-header">
+        <img class="web-icon" src="icon.png" alt="ícono de dust devile" />
+        <strong class="mr-auto">${capitalizeFirstLetter(titulo)}</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        ${message}
+      </div>
+    `;
   toastContainer.appendChild(toast);
   $(toast).toast({ delay: 3000 });
   $(toast).toast("show");
   toast.addEventListener("hidden.bs.toast", () => {
     toast.remove();
   });
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function mostrarCarrito() {
@@ -123,11 +128,38 @@ function mostrarCarrito() {
     const cartItem = document.createElement("div");
     cartItem.className = "cart-item";
     cartItem.innerHTML = `
-          <p>${product.name} - $${product.price}</p>
+        <p>${product.name} - $${product.price}</p>
+        <button class="btn btn-sm btn-danger remove-item" data-id="${product.id}">Eliminar</button>
       `;
     cartItems.appendChild(cartItem);
     total += product.price;
+
+    cartItem.querySelector(".remove-item").addEventListener("click", eliminarItem);
   });
 
+  // Botón para limpiar el carrito
+  const clearButton = document.createElement("button");
+  clearButton.className = "btn btn-danger mt-3 cart-drop";
+  clearButton.textContent = "Vaciar Carrito";
+  clearButton.addEventListener("click", vaciarCarrito);
+  cartItems.appendChild(clearButton);
+
   document.getElementById("total-amount").innerText = `Total: $${total}`;
+}
+
+function eliminarItem(event) {
+  const productId = event.target.getAttribute("data-id");
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart = cart.filter((id) => id !== productId);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  mostrarCarrito();
+  actualizarCarrito();
+  mostrarToast("Producto eliminado del carrito", "Producto eliminado");
+}
+
+function vaciarCarrito() {
+  localStorage.removeItem("cart");
+  mostrarCarrito();
+  actualizarCarrito();
+  mostrarToast("Carrito vaciado", "Productos eliminados");
 }

@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 body {
   animation: fadeIn 1s ease-in;
 }
@@ -11,11 +13,18 @@ nav.navbar {
   box-shadow: #0000004d 0px -1px 6px 2px;
 }
 
+.web-icon {
+  margin-right: 1em;
+  max-width: 32px;
+  width: fit-content;
+}
+
 div#product-list {
   row-gap: 1em;
 }
 
 // Bootstrap estilos propios
+// Estilos para los diferentes tipos de toast
 .toast-container {
   position: fixed;
   top: 1rem;
@@ -24,20 +33,98 @@ div#product-list {
 }
 
 .toast {
-  background-color: #343a40;
-  color: #fff;
-  opacity: 0.9;
+  position: relative;
+  min-width: 250px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
 }
 
 .toast-header {
-  background-color: #343a40;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
   color: #fff;
-  border-bottom: 1px solid #474f57;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: dimgrey;
 }
 
 .toast-body {
+  padding: 0.75rem;
+  color: white;
+}
+
+.toast.bg-normal {
   background-color: #343a40;
+
+  .toast-body {
+    color: white;
+  }
+}
+
+.toast.bg-warning {
+  background-color: #ffc107;
+
+  .toast-body {
+    color: black;
+  }
+}
+
+.toast.bg-danger {
+  background-color: #dc3545;
+
+  .toast-body {
+    color: white;
+  }
+}
+
+.toast.bg-success {
+  background-color: #28a745;
+
+  .toast-body {
+    color: white;
+  }
+}
+
+.close {
+  float: right;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
   color: #fff;
+  opacity: 0.8;
+}
+
+.close:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.close:focus,
+.close.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.cart-item {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin: auto;
+    flex-grow: 1;
+  }
+
+  &:hover {
+    background-color: #007bff17;
+  }
+}
+
+.cart-drop {
+  margin: 1em auto;
 }
 
 #cart-icon {
@@ -84,6 +171,10 @@ div#product-list {
 .card .btn {
   align-self: center;
   margin-top: 10px;
+}
+
+button.close > span {
+  color: black;
 }
 
 // Animaciones
